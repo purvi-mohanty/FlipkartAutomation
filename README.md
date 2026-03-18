@@ -60,19 +60,19 @@ Right-click project → Run
 
 ## 🖥 App Interface
 ```
-┌────────────────────────────────────────────────────────────────┐
-│  🛒 Flipkart Clone – Full Selenium Automation                  │
-├───────────────────────────┬────────────────────────────────────┤
-│  ⚙ Webapp Configuration  │     Automation Log                 │
-│  [Browse] [▶ Start Server]│  (green console output)           │
-│                           │                                    │
-│  🛍 Select Products       │                                    │
-│  ☑ Wireless Earbuds       │                                   │
-│  ☐ Smart Watch            │  ████████████ 67% Running...      │
-│                           │                                    │
-│   Shipping Address      │  [▶ RUN] [■ STOP] [✕ CLEAR]         │
-│   Payment Details       │                                      │
-└───────────────────────────┴────────────────────────────────────┘
+┌──────────────────────────────────────────────────────────────┐
+│  🛒 Flipkart Clone – Full Selenium Automation                │
+├───────────────────────────┬──────────────────────────────────┤
+│  ⚙ Webapp Configuration  │  📋 Automation Log               │
+│  [Browse] [▶ Start Server]│  (green console output)          │
+│                           │                                  │
+│  🛍 Select Products       │                                  │
+│  ☑ Wireless Earbuds       │                                  │
+│  ☐ Smart Watch            │  ████████████ 67% Running...     │
+│                           │                                  │
+│  📦 Shipping Address      │  [▶ RUN] [■ STOP] [✕ CLEAR]     │
+│  💳 Payment Details       │                                  │
+└───────────────────────────┴──────────────────────────────────┘
 ```
 
 ### Steps to Use:
@@ -88,7 +88,7 @@ Right-click project → Run
 
 ---
 
-##  What the Automation Does
+## 🤖 What the Automation Does
 
 | Step | Action |
 |------|--------|
@@ -105,7 +105,7 @@ Right-click project → Run
 
 ---
 
-##  Prerequisites
+## ⚙ Prerequisites
 
 | Tool | Version | Notes |
 |------|---------|-------|
@@ -114,11 +114,11 @@ Right-click project → Run
 | Google Chrome | Latest | Auto-matched by WebDriverManager |
 | Internet | Required | For CDN assets (jQuery / Bootstrap) |
 
->  **ChromeDriver is downloaded automatically** by WebDriverManager — no manual setup needed.
+> ✅ **ChromeDriver is downloaded automatically** by WebDriverManager — no manual setup needed.
 
 ---
 
-##  File Reference
+## 🧩 File Reference
 
 | File | Path |
 |------|------|
@@ -135,7 +135,7 @@ Right-click project → Run
 
 ---
 
-##  Maven Dependencies (`pom.xml`)
+## 📦 Maven Dependencies (`pom.xml`)
 ```xml
 <dependencies>
     <!-- Selenium WebDriver -->
@@ -156,7 +156,7 @@ Right-click project → Run
 
 ---
 
-##  Troubleshooting
+## 🐛 Troubleshooting
 
 | Issue | Fix |
 |-------|-----|
@@ -168,11 +168,11 @@ Right-click project → Run
 
 ---
 
-##  License
+## 📄 License
 
 This project is for **educational and testing purposes only.**
 The Flipkart clone web app is a local simulation — no real transactions are made.
 
 ---
 
-> Built with  Java,  Selenium , and  NetBeans
+> Built with ☕ Java, 🤖 Selenium 4, and 💙 NetBeans
