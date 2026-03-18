@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Flipkart - India's Fashion and Lifestyle Store</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .hero-banner { background: linear-gradient(135deg,#2874f0 0%,#1a5dc8 100%); padding: 20px; text-align:center; color:#fff; margin-bottom:2px; }
+    .hero-banner h1 { font-size:28px; margin-bottom:8px; }
+    .hero-banner p  { font-size:15px; opacity:.85; }
+  </style>
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<header>
+  <div id="nav-belt">
+    <div id="nav-logo">
+      <a href="index.html" class="fk-logo">
+        Flipkart
+        <span>Explore <b>Plus</b></span>
+      </a>
+    </div>
+
+    <div id="nav-search">
+      <form onsubmit="return false;">
+        <input type="text" id="search-input" placeholder="Search for products, brands and more">
+        <button class="search-btn" type="submit">&#128269;</button>
+      </form>
+    </div>
+
+    <div class="nav-links">
+      <a href="#" class="login-btn" id="login-btn">Login</a>
+      <a href="#">Become a Seller</a>
+      <a href="#">More ▾</a>
+      <a href="cart.html" class="cart-link" id="cart-link">
+        &#128722; Cart <span class="cart-count" id="cart-count">0</span>
+      </a>
+    </div>
+  </div>
+</header>
+
+<!-- ===== CATEGORY NAV ===== -->
+<div id="cat-nav">
+  <ul>
+    <li><a href="#" id="cat-electronics">Electronics</a></li>
+    <li><a href="#" id="cat-mobiles">Mobiles</a></li>
+    <li><a href="#" id="cat-fashion">Fashion</a></li>
+    <li><a href="#" id="cat-appliances">Appliances</a></li>
+    <li><a href="#" id="cat-furniture">Furniture</a></li>
+    <li><a href="#" id="cat-beauty">Beauty</a></li>
+    <li><a href="#" id="cat-grocery">Grocery</a></li>
+    <li><a href="#" id="cat-sports">Sports</a></li>
+    <li><a href="#" id="cat-travel">Travel</a></li>
+  </ul>
+</div>
+
+<!-- Cart Notification -->
+<div id="cart-notification">Item added to cart!</div>
+
+<!-- ===== BANNER CAROUSEL ===== -->
+<div id="banner-section">
+  <div class="container">
+    <div class="fk-carousel" id="fk-carousel">
+      <img src="img/slide_1.jpg" class="active" alt="Banner 1">
+      <img src="img/slide_2.jpg" alt="Banner 2">
+      <img src="img/slide_3.jpg" alt="Banner 3">
+      <img src="img/slide_4.jpg" alt="Banner 4">
+      <img src="img/slide_5.jpg" alt="Banner 5">
+      <button class="carousel-btn prev" onclick="changeSlide(-1)">&#10094;</button>
+      <button class="carousel-btn next" onclick="changeSlide(1)">&#10095;</button>
+    </div>
+  </div>
+</div>
+
+<!-- ===== PRODUCTS SECTION ===== -->
+<div id="products-section">
+  <div class="section-header">
+    <h2>Best Deals Today</h2>
+    <a href="#">View All</a>
+  </div>
+
+  <div class="products-grid" id="products-grid">
+
+    <!-- Product 1 -->
+    <div class="product-card" id="product-1">
+      <img src="img/product_1.jpg" alt="Home Essentials">
+      <div class="p-name">AmazonBasics Home Essentials Bundle Kit</div>
+      <div><span class="p-rating">4.2 &#9733;</span></div>
+      <div>
+        <span class="p-price">&#8377;2,199</span>
+        <span class="p-original">&#8377;4,999</span>
+        <span class="p-discount">56% off</span>
+      </div>
+      <button class="btn-cart" id="add-to-cart-1"
+        onclick="addToCart('AmazonBasics Home Essentials Bundle Kit','&#8377;2,199','img/product_1.jpg')">
+        ADD TO CART
+      </button>
+      <button class="btn-wishlist">WISHLIST</button>
+    </div>
+
+    <!-- Product 2 -->
+    <div class="product-card" id="product-2">
+      <img src="img/product_2.jpg" alt="Bluetooth Speaker">
+      <div class="p-name">Premium Wireless Bluetooth Speaker with Deep Bass</div>
+      <div><span class="p-rating">4.5 &#9733;</span></div>
+      <div>
+        <span class="p-price">&#8377;3,499</span>
+        <span class="p-original">&#8377;7,999</span>
+        <span class="p-discount">56% off</span>
+      </div>
+      <button class="btn-cart" id="add-to-cart-2"
+        onclick="addToCart('Premium Wireless Bluetooth Speaker','&#8377;3,499','img/product_2.jpg')">
+        ADD TO CART
+      </button>
+      <button class="btn-wishlist">WISHLIST</button>
+    </div>
+
+    <!-- Product 3 -->
+    <div class="product-card" id="product-3">
+      <img src="img/product_3.jpg" alt="Pet Care">
+      <div class="p-name">Complete Pet Grooming & Care Kit Set</div>
+      <div><span class="p-rating">4.1 &#9733;</span></div>
+      <div>
+        <span class="p-price">&#8377;1,899</span>
+        <span class="p-original">&#8377;3,499</span>
+        <span class="p-discount">46% off</span>
+      </div>
+      <button class="btn-cart" id="add-to-cart-3"
+        onclick="addToCart('Complete Pet Grooming & Care Kit Set','&#8377;1,899','img/product_3.jpg')">
+        ADD TO CART
+      </button>
+      <button class="btn-wishlist">WISHLIST</button>
+    </div>
+
+    <!-- Product 4 -->
+    <div class="product-card" id="product-4">
+      <img src="img/product_4.jpg" alt="Computer Accessories">
+      <div class="p-name">Computer Accessories Starter Pack - Keyboard Mouse Combo</div>
+      <div><span class="p-rating">4.3 &#9733;</span></div>
+      <div>
+        <span class="p-price">&#8377;4,299</span>
+        <span class="p-original">&#8377;8,999</span>
+        <span class="p-discount">52% off</span>
+      </div>
+      <button class="btn-cart" id="add-to-cart-4"
+        onclick="addToCart('Computer Accessories Starter Pack','&#8377;4,299','img/product_4.jpg')">
+        ADD TO CART
+      </button>
+      <button class="btn-wishlist">WISHLIST</button>
+    </div>
+
+    <!-- Product 5 -->
+    <div class="product-card" id="product-5">
+      <img src="img/product_5.jpg" alt="Smart Watch">
+      <div class="p-name">Smart Fitness Watch Pro Series Health Monitor</div>
+      <div><span class="p-rating">4.6 &#9733;</span></div>
+      <div>
+        <span class="p-price">&#8377;5,999</span>
+        <span class="p-original">&#8377;12,999</span>
+        <span class="p-discount">54% off</span>
+      </div>
+      <button class="btn-cart" id="add-to-cart-5"
+        onclick="addToCart('Smart Fitness Watch Pro Series','&#8377;5,999','img/product_5.jpg')">
+        ADD TO CART
+      </button>
+      <button class="btn-wishlist">WISHLIST</button>
+    </div>
+
+    <!-- Product 6 - Deal -->
+    <div class="product-card" id="product-6" style="border:2px solid #ff9f00;">
+      <div style="background:#ff9f00;color:#fff;font-size:11px;font-weight:700;padding:3px 8px;margin:-20px -15px 10px;text-align:center;">DEAL OF THE DAY</div>
+      <img src="img/product_6.jpg" alt="4K TV">
+      <div class="p-name">4K Ultra HD Smart Android LED Television 55 inch</div>
+      <div><span class="p-rating">4.4 &#9733;</span></div>
+      <div>
+        <span class="p-price">&#8377;32,999</span>
+        <span class="p-original">&#8377;69,990</span>
+        <span class="p-discount">53% off</span>
+      </div>
+      <button class="btn-cart" id="add-to-cart-6"
+        onclick="addToCart('4K Ultra HD Smart Android LED TV 55 inch','&#8377;32,999','img/product_6.jpg')">
+        ADD TO CART
+      </button>
+      <button class="btn-wishlist">WISHLIST</button>
+    </div>
+
+  </div>
+</div>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-col">
+      <h4>About</h4>
+      <a href="#">About Us</a>
+      <a href="#">Contact Us</a>
+      <a href="#">Careers</a>
+      <a href="#">Flipkart Stories</a>
+      <a href="#">Press</a>
+      <a href="#">Flipkart Wholesale</a>
+    </div>
+    <div class="footer-col">
+      <h4>Help</h4>
+      <a href="#">Payments</a>
+      <a href="#">Shipping</a>
+      <a href="#">Cancellation & Returns</a>
+      <a href="#">FAQ</a>
+      <a href="#">Report Infringement</a>
+    </div>
+    <div class="footer-col">
+      <h4>Consumer Policy</h4>
+      <a href="#">Cancellation & Returns</a>
+      <a href="#">Terms Of Use</a>
+      <a href="#">Security</a>
+      <a href="#">Privacy</a>
+      <a href="#">Sitemap</a>
+      <a href="#">Grievance Redressal</a>
+    </div>
+    <div class="footer-col">
+      <h4>Social</h4>
+      <a href="#">Facebook</a>
+      <a href="#">Twitter</a>
+      <a href="#">YouTube</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <a href="#">Conditions of Use & Sale</a>
+    <a href="#">Privacy Notice</a>
+    <a href="#">Interest-Based Ads</a>
+    &copy; 2007-2024 Flipkart.com
+  </div>
+</footer>
+
+<script>
+  // ---- Cart ----
+  function getCart() { try { return JSON.parse(localStorage.getItem('fk_cart') || '[]'); } catch(e) { return []; } }
+  function saveCart(c) { localStorage.setItem('fk_cart', JSON.stringify(c)); updateCartCount(); }
+  function updateCartCount() {
+    var c = getCart(), n = c.reduce(function(s,i){ return s+i.qty; }, 0);
+    document.getElementById('cart-count').textContent = n;
+  }
+  function addToCart(name, price, img) {
+    var c = getCart(), ex = c.find(function(i){ return i.name===name; });
+    if (ex) ex.qty++; else c.push({name:name, price:price, img:img, qty:1});
+    saveCart(c);
+    var n = document.getElementById('cart-notification');
+    n.style.display = 'block';
+    setTimeout(function(){ n.style.display='none'; }, 2000);
+  }
+  updateCartCount();
+
+  // ---- Carousel ----
+  var slideIndex = 0;
+  function changeSlide(dir) {
+    var imgs = document.querySelectorAll('#fk-carousel img');
+    imgs[slideIndex].classList.remove('active');
+    slideIndex = (slideIndex + dir + imgs.length) % imgs.length;
+    imgs[slideIndex].classList.add('active');
+  }
+  setInterval(function(){ changeSlide(1); }, 4000);
+</script>
+</body>
+</html>

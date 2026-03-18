@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Flipkart - Secure Checkout</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    body { background:#f1f3f6; }
+    .ck-header { background:#2874f0; padding:12px 0; }
+    .ck-header-inner { max-width:1000px; margin:0 auto; padding:0 15px; display:flex; align-items:center; gap:20px; }
+    .ck-header-inner .fk-logo { color:#fff; font-size:20px; font-weight:700; text-decoration:none; font-style:italic; }
+    .ck-header-inner .fk-logo span { color:#FFD700; font-size:10px; }
+    .ck-title { color:#fff; font-size:16px; margin-left:10px; }
+    .steps { display:flex; max-width:1000px; margin:15px auto 0; padding:0 15px; }
+    .step { flex:1; text-align:center; padding:10px; background:#fff; font-size:13px; color:#878787; border-bottom:3px solid #e0e0e0; }
+    .step.active { color:#2874f0; border-bottom-color:#2874f0; font-weight:700; }
+    .step.done   { color:#388e3c; border-bottom-color:#388e3c; }
+    .ck-wrap { max-width:1000px; margin:15px auto; padding:0 15px; display:flex; gap:15px; }
+    .ck-left  { flex:1; }
+    .ck-right { width:320px; }
+    .ck-box { background:#fff; border-radius:2px; margin-bottom:12px; padding:20px; }
+    .ck-box h3 { font-size:16px; font-weight:600; color:#212121; margin-bottom:16px; padding-bottom:10px; border-bottom:1px solid #f0f0f0; }
+    .form-row { display:flex; gap:12px; margin-bottom:12px; }
+    .form-group { flex:1; }
+    .form-group label { font-size:12px; font-weight:700; color:#878787; display:block; margin-bottom:4px; text-transform:uppercase; }
+    .form-group input, .form-group select {
+      width:100%; padding:10px 12px; border:1px solid #e0e0e0; border-radius:2px;
+      font-size:14px; outline:none; color:#212121;
+    }
+    .form-group input:focus, .form-group select:focus { border-color:#2874f0; }
+    .delivery-opts { display:flex; flex-direction:column; gap:8px; }
+    .delivery-opt { display:flex; align-items:center; gap:12px; padding:12px; border:1px solid #e0e0e0; border-radius:2px; cursor:pointer; }
+    .delivery-opt.selected { border-color:#2874f0; background:#f5f9ff; }
+    .delivery-opt label { cursor:pointer; font-size:14px; color:#212121; }
+    .delivery-opt .d-tag { background:#388e3c; color:#fff; font-size:11px; padding:2px 6px; border-radius:2px; margin-left:8px; }
+    .pay-opts { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:14px; }
+    .pay-opt { padding:8px 16px; border:1px solid #e0e0e0; border-radius:2px; cursor:pointer; font-size:13px; }
+    .pay-opt.active { border-color:#2874f0; background:#f5f9ff; color:#2874f0; font-weight:700; }
+    #form-error { display:none; background:#fff3f3; color:#c00; border:1px solid #c00; border-radius:2px; padding:10px 14px; font-size:13px; margin-bottom:12px; }
+    .btn-place { background:#fb641b; color:#fff; width:100%; padding:14px; border:none; border-radius:2px; font-size:16px; font-weight:700; cursor:pointer; margin-top:10px; }
+    .btn-place:hover { background:#e05a18; }
+    .secure-note { text-align:center; font-size:12px; color:#878787; margin-top:8px; }
+    .summary-item { display:flex; gap:10px; margin-bottom:12px; align-items:center; }
+    .summary-item img { width:56px; height:56px; object-fit:contain; border:1px solid #f0f0f0; }
+    .summary-item-name { flex:1; font-size:13px; color:#212121; }
+    .summary-item-price { font-size:14px; font-weight:700; color:#212121; }
+    .price-row { display:flex; justify-content:space-between; padding:6px 0; font-size:14px; }
+    .price-row.total { font-weight:700; font-size:16px; border-top:1px dashed #e0e0e0; margin-top:6px; padding-top:10px; }
+    .price-row.discount { color:#388e3c; }
+    .savings-note { background:#e8f5e9; color:#388e3c; font-size:13px; padding:8px 12px; border-radius:2px; margin-top:10px; }
+  </style>
+</head>
+<body>
+
+<div class="ck-header">
+  <div class="ck-header-inner">
+    <a href="index.html" class="fk-logo">Flipkart<span>Explore Plus</span></a>
+    <span class="ck-title">&#128274; Secure Checkout</span>
+  </div>
+</div>
+
+<div class="steps">
+  <div class="step done">&#10003; Login</div>
+  <div class="step active">Delivery Address</div>
+  <div class="step">Payment</div>
+  <div class="step">Summary</div>
+</div>
+
+<div class="ck-wrap" id="checkout-wrapper">
+
+  <!-- LEFT: Form -->
+  <div class="ck-left">
+    <div id="form-error">Please fill in all required fields correctly.</div>
+
+    <!-- Delivery Address -->
+    <div class="ck-box">
+      <h3>&#128205; Delivery Address</h3>
+      <div class="form-row">
+        <div class="form-group">
+          <label>First Name *</label>
+          <input type="text" id="first-name" placeholder="First name">
+        </div>
+        <div class="form-group">
+          <label>Last Name *</label>
+          <input type="text" id="last-name" placeholder="Last name">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Mobile Number *</label>
+          <input type="text" id="phone" placeholder="10-digit mobile number" maxlength="10">
+        </div>
+        <div class="form-group">
+          <label>Pincode *</label>
+          <input type="text" id="zip" placeholder="6-digit pincode" maxlength="6">
+        </div>
+      </div>
+      <div class="form-group" style="margin-bottom:12px;">
+        <label>Address (House No, Building, Street, Area) *</label>
+        <input type="text" id="address1" placeholder="House No., Building Name, Street">
+      </div>
+      <div class="form-group" style="margin-bottom:12px;">
+        <label>Locality / Town</label>
+        <input type="text" id="address2" placeholder="Locality or Town">
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>City / District *</label>
+          <input type="text" id="city" placeholder="City or District">
+        </div>
+        <div class="form-group">
+          <label>State *</label>
+          <select id="state">
+            <option value="">-- Select State --</option>
+            <option value="AP">Andhra Pradesh</option>
+            <option value="AR">Arunachal Pradesh</option>
+            <option value="AS">Assam</option>
+            <option value="BR">Bihar</option>
+            <option value="CT">Chhattisgarh</option>
+            <option value="DL">Delhi</option>
+            <option value="GA">Goa</option>
+            <option value="GJ">Gujarat</option>
+            <option value="HR">Haryana</option>
+            <option value="HP">Himachal Pradesh</option>
+            <option value="JH">Jharkhand</option>
+            <option value="KA">Karnataka</option>
+            <option value="KL">Kerala</option>
+            <option value="MP">Madhya Pradesh</option>
+            <option value="MH">Maharashtra</option>
+            <option value="MN">Manipur</option>
+            <option value="ML">Meghalaya</option>
+            <option value="MZ">Mizoram</option>
+            <option value="NL">Nagaland</option>
+            <option value="OD">Odisha</option>
+            <option value="PB">Punjab</option>
+            <option value="RJ">Rajasthan</option>
+            <option value="SK">Sikkim</option>
+            <option value="TN">Tamil Nadu</option>
+            <option value="TG">Telangana</option>
+            <option value="TR">Tripura</option>
+            <option value="UP">Uttar Pradesh</option>
+            <option value="UK">Uttarakhand</option>
+            <option value="WB">West Bengal</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- Delivery Option -->
+    <div class="ck-box">
+      <h3>&#128666; Delivery Options</h3>
+      <div class="delivery-opts">
+        <label class="delivery-opt selected" onclick="selectDelivery(this,'standard')">
+          <input type="radio" name="delivery" id="delivery-standard" value="standard" checked>
+          <div>
+            <strong>Standard Delivery</strong> — 4–5 business days
+            <span class="d-tag">FREE</span>
+          </div>
+        </label>
+        <label class="delivery-opt" onclick="selectDelivery(this,'express')">
+          <input type="radio" name="delivery" id="delivery-express" value="express">
+          <div>
+            <strong>Express Delivery</strong> — 1–2 business days
+            <span style="color:#878787;font-size:13px;margin-left:8px;">&#8377;99</span>
+          </div>
+        </label>
+      </div>
+    </div>
+
+    <!-- Payment -->
+    <div class="ck-box">
+      <h3>&#128179; Payment Method</h3>
+      <div class="pay-opts">
+        <div class="pay-opt active" id="pay-card" onclick="selectPay('card')">Credit/Debit Card</div>
+        <div class="pay-opt" id="pay-upi"  onclick="selectPay('upi')">UPI</div>
+        <div class="pay-opt" id="pay-netb" onclick="selectPay('netb')">Net Banking</div>
+        <div class="pay-opt" id="pay-cod"  onclick="selectPay('cod')">Cash on Delivery</div>
+      </div>
+
+      <div id="card-section">
+        <div class="form-group" style="margin-bottom:10px;">
+          <label>Name on Card *</label>
+          <input type="text" id="card-name" placeholder="As printed on card">
+        </div>
+        <div class="form-group" style="margin-bottom:10px;">
+          <label>Card Number *</label>
+          <input type="text" id="card-number" placeholder="1234 5678 9012 3456" maxlength="19">
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Expiry *</label>
+            <input type="text" id="card-expiry" placeholder="MM/YY" maxlength="5">
+          </div>
+          <div class="form-group">
+            <label>CVV *</label>
+            <input type="password" id="card-cvv" placeholder="•••" maxlength="4">
+          </div>
+        </div>
+      </div>
+
+      <div id="upi-section" style="display:none;">
+        <div class="form-group">
+          <label>UPI ID *</label>
+          <input type="text" id="upi-id" placeholder="yourname@upi">
+        </div>
+      </div>
+    </div>
+
+    <button class="btn-place" id="place-order-btn" onclick="placeOrder()">
+      &#128274; CONFIRM ORDER
+    </button>
+    <div class="secure-note">100% Secure &amp; Trusted. Encrypted payments.</div>
+  </div>
+
+  <!-- RIGHT: Summary -->
+  <div class="ck-right">
+    <div class="ck-box">
+      <h3>Order Summary</h3>
+      <div id="checkout-items"></div>
+      <hr style="border:none;border-top:1px solid #f0f0f0;margin:12px 0;">
+      <div id="checkout-pricing"></div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  function getCart() { try { return JSON.parse(localStorage.getItem('fk_cart') || '[]'); } catch(e) { return []; } }
+  function parsePrice(p) { return parseFloat(String(p).replace(/[^0-9.]/g,'')) || 0; }
+
+  function selectDelivery(el, val) {
+    document.querySelectorAll('.delivery-opt').forEach(function(o){ o.classList.remove('selected'); });
+    el.classList.add('selected');
+  }
+  function selectPay(type) {
+    ['card','upi','netb','cod'].forEach(function(t){
+      document.getElementById('pay-'+t).classList.remove('active');
+    });
+    document.getElementById('pay-'+type).classList.add('active');
+    document.getElementById('card-section').style.display = (type==='card') ? 'block' : 'none';
+    document.getElementById('upi-section').style.display  = (type==='upi')  ? 'block' : 'none';
+  }
+
+  function renderSummary() {
+    var cart = getCart(), subtotal = 0, origTotal = 0, html = '';
+    cart.forEach(function(item){
+      var p = parsePrice(item.price), o = Math.round(p*2.1), t = p*item.qty;
+      subtotal += t; origTotal += o*item.qty;
+      html += '<div class="summary-item">' +
+        '<img src="'+item.img+'" alt="'+item.name+'">' +
+        '<div class="summary-item-name">'+item.name+'<br><small style="color:#878787;">Qty: '+item.qty+'</small></div>' +
+        '<div class="summary-item-price">&#8377;'+t.toLocaleString('en-IN')+'</div>' +
+      '</div>';
+    });
+    document.getElementById('checkout-items').innerHTML = html;
+    var discount = origTotal - subtotal;
+    var delivery = subtotal > 500 ? 0 : 40;
+    var total = subtotal + delivery;
+    document.getElementById('checkout-pricing').innerHTML =
+      '<div class="price-row"><span>MRP</span><span>&#8377;'+origTotal.toLocaleString('en-IN')+'</span></div>' +
+      '<div class="price-row discount"><span>Discount</span><span>- &#8377;'+discount.toLocaleString('en-IN')+'</span></div>' +
+      '<div class="price-row"><span>Delivery</span><span>'+(delivery===0?'<span style="color:#388e3c">FREE</span>':'&#8377;'+delivery)+'</span></div>' +
+      '<div class="price-row total"><span>Total</span><span id="final-total">&#8377;'+total.toLocaleString('en-IN')+'</span></div>' +
+      '<div class="savings-note">You save &#8377;'+discount.toLocaleString('en-IN')+' on this order!</div>';
+  }
+
+  function placeOrder() {
+    var err = false;
+    ['first-name','last-name','address1','city','state','zip','phone'].forEach(function(id){
+      var el = document.getElementById(id);
+      if (!el.value.trim()) { el.style.borderColor='#c00'; err=true; }
+      else el.style.borderColor='#e0e0e0';
+    });
+    var activePayId = document.querySelector('.pay-opt.active').id;
+    if (activePayId === 'pay-card') {
+      ['card-name','card-number','card-expiry','card-cvv'].forEach(function(id){
+        var el = document.getElementById(id);
+        if (!el.value.trim()) { el.style.borderColor='#c00'; err=true; }
+        else el.style.borderColor='#e0e0e0';
+      });
+    }
+    if (err) { document.getElementById('form-error').style.display='block'; window.scrollTo(0,0); return; }
+    document.getElementById('form-error').style.display='none';
+
+    var cart = getCart();
+    var subtotal = cart.reduce(function(s,i){ return s+parsePrice(i.price)*i.qty; }, 0);
+    var delivery = subtotal > 500 ? 0 : 40;
+    var total = subtotal + delivery;
+    var orderId = 'FK' + Date.now();
+    var deliveryOpt = document.querySelector('input[name=delivery]:checked').value;
+
+    var orderData = {
+      orderId: orderId,
+      items: cart,
+      subtotal: subtotal,
+      total: total,
+      delivery: deliveryOpt,
+      name: document.getElementById('first-name').value + ' ' + document.getElementById('last-name').value,
+      address: document.getElementById('address1').value + ', ' + document.getElementById('city').value + ', ' + document.getElementById('state').value + ' - ' + document.getElementById('zip').value,
+      phone: document.getElementById('phone').value,
+      date: new Date().toLocaleDateString('en-IN',{year:'numeric',month:'long',day:'numeric'})
+    };
+    localStorage.setItem('fk_last_order', JSON.stringify(orderData));
+    localStorage.removeItem('fk_cart');
+    window.location = 'confirmation.html';
+  }
+
+  // Card formatting
+  document.getElementById('card-number').addEventListener('input', function(){
+    var v = this.value.replace(/\D/g,'').substring(0,16);
+    this.value = v.replace(/(.{4})/g,'$1 ').trim();
+  });
+  document.getElementById('card-expiry').addEventListener('input', function(){
+    var v = this.value.replace(/\D/g,'');
+    if (v.length>=2) v = v.substring(0,2)+'/'+v.substring(2,4);
+    this.value = v;
+  });
+
+  renderSummary();
+</script>
+</body>
+</html>

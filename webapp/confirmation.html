@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Flipkart - Order Confirmed!</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    body { background:#f1f3f6; }
+    .conf-header { background:#2874f0; padding:12px 0; }
+    .conf-header-inner { max-width:900px; margin:0 auto; padding:0 15px; display:flex; align-items:center; gap:20px; }
+    .conf-header-inner .fk-logo { color:#fff; font-size:20px; font-weight:700; font-style:italic; text-decoration:none; }
+    .conf-header-inner .fk-logo span { color:#FFD700; font-size:10px; font-weight:400; display:block; margin-top:-4px; }
+    .conf-wrap { max-width:900px; margin:20px auto; padding:0 15px; }
+    .conf-box { background:#fff; border-radius:2px; margin-bottom:12px; }
+    .conf-banner { background:#1a9e40; padding:24px 30px; display:flex; align-items:center; gap:20px; border-radius:2px 2px 0 0; }
+    .conf-icon { width:56px; height:56px; background:#fff; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:30px; flex-shrink:0; }
+    .conf-text h2 { color:#fff; font-size:22px; font-weight:500; margin-bottom:4px; }
+    .conf-text p  { color:rgba(255,255,255,.85); font-size:14px; }
+    .conf-text .order-id-label { color:rgba(255,255,255,.7); font-size:12px; margin-top:6px; }
+    .conf-text .order-id-val   { color:#FFD700; font-size:14px; font-weight:700; }
+    .conf-body { padding:24px 30px; }
+    .conf-body h4 { font-size:13px; font-weight:700; color:#878787; text-transform:uppercase; letter-spacing:.8px; margin-bottom:10px; }
+    .info-block { background:#f8f8f8; border-radius:2px; padding:14px 16px; font-size:14px; color:#212121; margin-bottom:16px; line-height:1.6; }
+    .track-steps { display:flex; margin:20px 0; position:relative; }
+    .track-steps::before { content:''; position:absolute; top:16px; left:0; right:0; height:2px; background:#e0e0e0; }
+    .track-step { flex:1; text-align:center; position:relative; }
+    .track-dot { width:32px; height:32px; border-radius:50%; background:#e0e0e0; margin:0 auto 6px; display:flex; align-items:center; justify-content:center; font-size:13px; font-weight:700; color:#878787; position:relative; z-index:1; }
+    .track-step.done .track-dot   { background:#1a9e40; color:#fff; }
+    .track-step.active .track-dot { background:#2874f0; color:#fff; }
+    .track-step label { font-size:11px; color:#878787; }
+    .track-step.done label, .track-step.active label { color:#212121; font-weight:600; }
+    .order-item { display:flex; gap:12px; padding:14px 0; border-bottom:1px solid #f0f0f0; align-items:center; }
+    .order-item:last-child { border-bottom:none; }
+    .order-item img { width:72px; height:72px; object-fit:contain; border:1px solid #f0f0f0; }
+    .order-item-name  { flex:1; font-size:14px; color:#212121; }
+    .order-item-price { font-size:15px; font-weight:700; color:#212121; }
+    .price-row { display:flex; justify-content:space-between; padding:6px 0; font-size:14px; }
+    .price-row.total { font-weight:700; font-size:16px; border-top:2px solid #2874f0; margin-top:6px; padding-top:10px; color:#2874f0; }
+    .estimated-box { background:#e3f2fd; border-left:4px solid #2874f0; padding:12px 16px; border-radius:0 4px 4px 0; margin-bottom:16px; font-size:14px; }
+    .btn-row { display:flex; gap:12px; flex-wrap:wrap; margin-top:20px; }
+    .btn-primary-fk   { background:#2874f0; color:#fff; padding:11px 24px; border:none; border-radius:2px; font-size:14px; font-weight:700; cursor:pointer; text-decoration:none; }
+    .btn-secondary-fk { background:#fff; color:#2874f0; padding:11px 24px; border:1px solid #2874f0; border-radius:2px; font-size:14px; font-weight:700; cursor:pointer; text-decoration:none; }
+    .btn-primary-fk:hover   { background:#1a5dc8; }
+    .btn-secondary-fk:hover { background:#f5f9ff; }
+  </style>
+</head>
+<body>
+
+<div class="conf-header">
+  <div class="conf-header-inner">
+    <a href="index.html" class="fk-logo">Flipkart<span>Explore Plus</span></a>
+  </div>
+</div>
+
+<div class="conf-wrap">
+  <div class="conf-box">
+
+    <!-- Green success banner -->
+    <div class="conf-banner">
+      <div class="conf-icon">&#10003;</div>
+      <div class="conf-text">
+        <h2 id="conf-title">Order Placed Successfully!</h2>
+        <p id="conf-subtitle">Your order has been confirmed and will be delivered soon.</p>
+        <div class="order-id-label">Order ID</div>
+        <div class="order-id-val" id="confirm-order-id">Loading...</div>
+      </div>
+    </div>
+
+    <div class="conf-body">
+
+      <!-- Track Steps -->
+      <div class="track-steps">
+        <div class="track-step done"><div class="track-dot">&#10003;</div><label>Ordered</label></div>
+        <div class="track-step active"><div class="track-dot">2</div><label>Processing</label></div>
+        <div class="track-step"><div class="track-dot">3</div><label>Packed</label></div>
+        <div class="track-step"><div class="track-dot">4</div><label>Shipped</label></div>
+        <div class="track-step"><div class="track-dot">5</div><label>Delivered</label></div>
+      </div>
+
+      <!-- Estimated Delivery -->
+      <div class="estimated-box">
+        &#128666; <strong>Estimated Delivery:</strong>
+        <span id="estimated-date">Loading...</span>
+      </div>
+
+      <div style="display:flex;gap:20px;flex-wrap:wrap;">
+        <div style="flex:1;min-width:200px;">
+          <h4>Delivery Address</h4>
+          <div class="info-block" id="delivery-address">Loading...</div>
+        </div>
+        <div style="flex:1;min-width:200px;">
+          <h4>Payment Method</h4>
+          <div class="info-block">
+            &#128179; Credit/Debit Card<br>
+            <span style="color:#878787;font-size:13px;">Card ending in ****</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Order Items -->
+      <h4 style="margin-top:10px;">Items in Your Order</h4>
+      <div id="order-items-list"></div>
+
+      <!-- Price Summary -->
+      <div style="background:#f8f8f8;padding:16px;border-radius:2px;margin-top:10px;">
+        <div id="price-summary"></div>
+      </div>
+
+      <!-- Buttons -->
+      <div class="btn-row">
+        <a href="index.html" class="btn-primary-fk" id="continue-shopping-btn">CONTINUE SHOPPING</a>
+        <a href="#" class="btn-secondary-fk" id="track-order-btn">TRACK ORDER</a>
+        <a href="#" class="btn-secondary-fk" id="view-all-orders-btn">MY ORDERS</a>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+  function parsePrice(p) { return parseFloat(String(p).replace(/[^0-9.]/g,'')) || 0; }
+
+  window.onload = function() {
+    var order;
+    try { order = JSON.parse(localStorage.getItem('fk_last_order') || 'null'); } catch(e) {}
+
+    if (!order) {
+      document.getElementById('conf-title').textContent = 'No order found.';
+      document.getElementById('conf-subtitle').textContent = 'Please go back and place an order.';
+      return;
+    }
+
+    document.getElementById('confirm-order-id').textContent = order.orderId;
+    document.getElementById('conf-subtitle').textContent =
+      'Hi ' + order.name + '! Your order has been placed and confirmed.';
+    document.getElementById('delivery-address').innerHTML =
+      '<strong>' + order.name + '</strong><br>' + order.address + '<br>Phone: ' + order.phone;
+
+    var d = new Date();
+    d.setDate(d.getDate() + (order.delivery === 'express' ? 2 : 5));
+    document.getElementById('estimated-date').textContent =
+      d.toLocaleDateString('en-IN',{weekday:'long',year:'numeric',month:'long',day:'numeric'});
+
+    var itemsHtml = '', subtotal = 0;
+    order.items.forEach(function(item){
+      var t = parsePrice(item.price) * item.qty;
+      subtotal += t;
+      itemsHtml += '<div class="order-item">' +
+        '<img src="'+item.img+'" alt="'+item.name+'">' +
+        '<div class="order-item-name"><strong>'+item.name+'</strong><br><span style="color:#878787;font-size:13px;">Qty: '+item.qty+'</span></div>' +
+        '<div class="order-item-price">&#8377;'+t.toLocaleString('en-IN')+'</div>' +
+      '</div>';
+    });
+    document.getElementById('order-items-list').innerHTML = itemsHtml;
+
+    var origTotal = Math.round(subtotal * 2.1);
+    var discount  = origTotal - subtotal;
+    var delivery  = subtotal > 500 ? 0 : 40;
+    var total     = subtotal + delivery;
+
+    document.getElementById('price-summary').innerHTML =
+      '<div class="price-row"><span>Total MRP</span><span>&#8377;'+origTotal.toLocaleString('en-IN')+'</span></div>' +
+      '<div class="price-row" style="color:#388e3c"><span>Discount</span><span>- &#8377;'+discount.toLocaleString('en-IN')+'</span></div>' +
+      '<div class="price-row"><span>Delivery</span><span>'+(delivery===0?'FREE':'&#8377;'+delivery)+'</span></div>' +
+      '<div class="price-row total"><span>Total Amount Paid</span><span id="order-grand-total">&#8377;'+total.toLocaleString('en-IN')+'</span></div>';
+  };
+</script>
+</body>
+</html>

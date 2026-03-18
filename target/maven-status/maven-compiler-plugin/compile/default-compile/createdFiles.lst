@@ -1,0 +1,5 @@
+com\flipkart\model\CartItem.class
+com\flipkart\automation\FlipkartAutomationEngine.class
+com\flipkart\model\OrderDetails.class
+com\flipkart\app\MainApp.class
+com\flipkart\app\LocalWebServer.class
