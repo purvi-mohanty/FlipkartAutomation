@@ -31,7 +31,13 @@ FlipkartAutomation/
         ├── CartItem.java                ← Cart item data model
         └── OrderDetails.java            ← Order details data model
 ```
+## Output 
 
+[
+
+<!-- Uploading "2026-03-18 18-28-38.mp4"... -->
+
+](url)
 ---
 
 ## 🚀 How to Run in NetBeans
