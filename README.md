@@ -32,12 +32,9 @@ FlipkartAutomation/
         └── OrderDetails.java            ← Order details data model
 ```
 ## Output 
-
-[
+https://github.com/user-attachments/assets/194c6ec4-9d43-48eb-b553-8e4561e35c37
 
 <!-- Uploading "2026-03-18 18-28-38.mp4"... -->
-
-](url)
 ---
 
 ## 🚀 How to Run in NetBeans
